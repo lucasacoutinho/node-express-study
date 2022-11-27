@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - app
+
+volumes:
+  mongodb-data: null
+
+networks:
+  app:
+    driver: bridge

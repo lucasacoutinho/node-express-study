@@ -1,0 +1,4 @@
+.git
+.vscode
+.devcontainer
+node_modules
